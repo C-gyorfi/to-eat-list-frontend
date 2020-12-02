@@ -1,5 +1,7 @@
 import './App.css';
 import FoodList from './FoodList/FoodList.js'
+import { DatePicker } from 'antd';
+import 'antd/dist/antd.css';
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           ]
         }
       />
+      <DatePicker />
     </div>
   );
 }

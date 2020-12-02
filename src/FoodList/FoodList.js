@@ -1,6 +1,7 @@
 import './FoodList.css';
 import ListItem from '../ListItem/ListItem';
 import PropTypes from 'prop-types';
+import { List } from 'antd';
 
 
 const FoodList = ({ items }) => {
@@ -11,9 +12,22 @@ const FoodList = ({ items }) => {
     />)
   );
   return(
-    <div className="food-list-container">
-      {listItems}
-    </div>
+    <List className="food-list-container"
+      size="large"
+      header={<div>Add new items</div>}
+      footer={<div>Add new items</div>}
+      bordered
+      itemLayout="horizontal"
+      dataSource={listItems}
+      renderItem={item => (
+        <List.Item>
+          <List.Item.Meta
+            avatar={'✅'}
+            description={item}
+          />
+        </List.Item>
+      )}
+    />
   )
 }
 
