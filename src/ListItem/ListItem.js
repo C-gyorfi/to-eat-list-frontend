@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './ListItem.css';
 
 const ListItem = ({ name, expiryDate }) => (
   <div className={`list-item ${name}`}>
-    <p className="name">
-      {name}
-    </p>
-    <p className="expiryDate">
-      {expiryDate}
+    <p>
+      <div className="list-item-name">
+        {name}
+      </div>
+      <div className="list-item-expiryDate">
+        {expiryDate}
+      </div>
     </p>
   </div>
 );

@@ -1,0 +1,10 @@
+.list-item-name {
+  float: left;
+  padding-left: 20px;
+}
+
+.list-expiry-date{
+  float: right;
+  padding-right: 20px;
+}
+

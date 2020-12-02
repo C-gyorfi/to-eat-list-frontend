@@ -10,9 +10,9 @@ function App() {
       <FoodList 
         items={
           [
-            {name: "Butter", expiryDate: new Date(2018, 11, 24).toString()},
-            {name: "Bread", expiryDate: new Date(2018, 11, 24).toString()},
-            {name: "Milk", expiryDate: new Date(2018, 11, 30).toString()},
+            {name: "Butter", expiryDate: new Date(2018, 11, 24).toISOString().split('T')[0]},
+            {name: "Bread", expiryDate: new Date(2018, 11, 26).toISOString().split('T')[0]},
+            {name: "Milk", expiryDate: new Date(2018, 11, 30).toISOString().split('T')[0]},
           ]
         }
       />
