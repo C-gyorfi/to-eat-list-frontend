@@ -17,7 +17,6 @@ const FoodList = ({ items }) => {
       /* header={<div>Add new items</div>}
       footer={<div>Add new items</div>} */
       bordered
-      itemLayout="horizontal"
       dataSource={listItems}
       renderItem={item => (
         <List.Item>

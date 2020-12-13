@@ -1,0 +1,5 @@
+.food-list-container {
+  max-width: 1200px;
+  margin: auto !important;
+  background-color: whitesmoke;
+}
