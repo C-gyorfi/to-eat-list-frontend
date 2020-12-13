@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ListItem.css';
-import { List, Avatar } from 'antd';
 
 const ListItem = ({ name, expiryDate }) => (
   <div className={`list-item ${name}`}>
