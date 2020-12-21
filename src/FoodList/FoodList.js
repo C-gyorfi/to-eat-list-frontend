@@ -44,8 +44,6 @@ const FoodList = () => {
       return (
         <List className="food-list-container"
         size="large"
-        /* header={<div>Add new items</div>}
-        footer={<div>Add new items</div>} */
         bordered
         dataSource={listItems}
         renderItem={item => (
