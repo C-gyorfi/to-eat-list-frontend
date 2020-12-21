@@ -9,11 +9,10 @@ const FoodList = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const apiurl = process.env.REACT_APP_TEL_API_URL;
     const endpoint = "api/1/food_items/";
 
-    fetch(proxyurl + apiurl + endpoint)
+    fetch(apiurl + endpoint)
       .then(res => res.json())
       .then(
         (result) => {
