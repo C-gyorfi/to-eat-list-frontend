@@ -36,6 +36,7 @@ const FoodList = () => {
     if (items.food_items) {
       listItems = items.food_items.map(item => (
         <ListItem
+          id={item.id}
           name={item.name}
           expiryDate={item.expiry_date}
         />)
