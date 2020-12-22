@@ -3,9 +3,27 @@ import './NewItem.css';
 import { Input, DatePicker, Button, message } from 'antd';
 
 function addItem() {
-  var new_item_name = document.getElementById('new-item-field').value;
-  var expery_date = document.getElementById('new-expiry-date').value;
-  message.info("Added: " + new_item_name + ", expiry date: " + expery_date);
+  const apiurl = process.env.REACT_APP_TEL_API_URL;
+  const endpoint = "api/1/food_item/";
+  const newItemName = document.getElementById('new-item-field').value;
+  const expiryDate = document.getElementById('new-expiry-date').value;
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({"name": newItemName, "expiry_date": expiryDate})
+  };
+  fetch(apiurl + endpoint, requestOptions)
+    .then(response => response.json()
+    .then(
+      (result) => {
+        message.info("New item added: " + result.name);
+        window.location.reload();
+      },
+      (error) => {
+        message.warn("Something went wrong: " + error.message + " , try again...");
+      }
+    )
+  );
 }
 
 const NewItem = () => (
