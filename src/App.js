@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>To-eat list</h1>
+        <h1>To Eat List 🦑🥒🍚🥢</h1>
       </header>
       <NewItem />
       <FoodList />
