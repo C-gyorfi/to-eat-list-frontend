@@ -15,7 +15,7 @@ function handleDelete(id) {
         window.location.reload();
       },
       (error) => {
-        message.warn("Something went wrong: " + error.message + " , try again...");
+        message.error("Something went wrong: " + error.message + " , try again...");
       }
     )
   );

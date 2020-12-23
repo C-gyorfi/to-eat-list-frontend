@@ -8,6 +8,7 @@ class NewItem extends React.Component {
     const endpoint = "api/1/food_item/";
     const newItemName = document.getElementById('new-item-field').value;
     const expiryDate = document.getElementById('new-expiry-date').value;
+    if (!newItemName || !expiryDate) return message.warn('Enter food item details');
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -17,11 +18,11 @@ class NewItem extends React.Component {
       .then(response => response.json()
       .then(
         (result) => {
-          message.info("New item added: " + result.name);
+          message.success("New item added: " + result.name);
           window.location.reload();
         },
         (error) => {
-          message.warn("Something went wrong: " + error.message + " , try again...");
+          message.error("Something went wrong: " + error.message + " , try again...");
         }
       )
     );
