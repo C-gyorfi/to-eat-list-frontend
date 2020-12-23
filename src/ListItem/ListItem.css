@@ -2,12 +2,14 @@
   float: left;
   padding-left: 20px;
   font-size: 150%;
+  width: 25%;
 }
 
 .list-expiry-date{
   float: right;
   padding-right: 20px;
   font-size: 200%;
+  width: 35%;
 }
 
 .list-item-menu{
