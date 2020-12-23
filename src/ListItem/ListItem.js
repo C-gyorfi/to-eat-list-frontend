@@ -4,7 +4,21 @@ import './ListItem.css';
 import { Menu, Dropdown, Button, message } from 'antd';
 
 function handleDelete(id) {
-  message.info('Delete not yet implemented: ' + id);
+  const apiurl = process.env.REACT_APP_TEL_API_URL;
+  const endpoint = `api/food_item/${id}/`;
+  fetch(apiurl + endpoint, { method: 'DELETE' })
+    .then(response => response.json()
+    .then(
+      (result) => {
+        message.info(result.message);
+        //Fixme: reloading the window is not ideal
+        window.location.reload();
+      },
+      (error) => {
+        message.warn("Something went wrong: " + error.message + " , try again...");
+      }
+    )
+  );
 }
 
 const ListItem = ({id, name, expiryDate }) => (

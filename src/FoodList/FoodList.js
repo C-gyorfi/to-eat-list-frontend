@@ -57,7 +57,7 @@ const FoodList = () => {
         />
       );
     }
-    return <div>Something is not quite right...</div>;
+    return <div>No items found...</div>;
   }
 }
 

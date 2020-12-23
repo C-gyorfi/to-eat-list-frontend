@@ -17,6 +17,7 @@ function addItem() {
     .then(
       (result) => {
         message.info("New item added: " + result.name);
+        //Fixme: reloading the window is not ideal
         window.location.reload();
       },
       (error) => {
