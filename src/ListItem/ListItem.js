@@ -21,9 +21,19 @@ function handleDelete(id) {
   );
 }
 
+function getStateEmoji(expiryDateString){
+  const expiryDate = new Date(expiryDateString).setHours(0,0,0,0);
+  const now = new Date().setHours(0,0,0,0);
+  if (expiryDate === now) return "❗";
+  return expiryDate < now ? "😢" : "✅"; 
+}
+
 const ListItem = ({id, name, expiryDate }) => (
   <div className={`list-item ${name}`}>
     <p>
+      <div className="list-item-state">
+        { getStateEmoji(expiryDate) }
+      </div>
       <div className="list-item-name">
         {name}
       </div>

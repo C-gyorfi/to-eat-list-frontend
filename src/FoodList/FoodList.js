@@ -49,8 +49,7 @@ const FoodList = () => {
         renderItem={item => (
             <List.Item>
               <List.Item.Meta
-                avatar={'✅'}
-                description={item}
+                title={item}
               />
             </List.Item>
           )}
