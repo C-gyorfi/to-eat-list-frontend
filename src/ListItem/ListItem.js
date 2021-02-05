@@ -30,24 +30,22 @@ function getStateEmoji(expiryDateString){
 
 const ListItem = ({id, name, expiryDate }) => (
   <div className={`list-item ${name}`}>
-    <p>
-      <div className="list-item-state">
-        { getStateEmoji(expiryDate) }
-      </div>
-      <div className="list-item-name">
-        {name}
-      </div>
-      <div className="list-item-expiryDate">
-        {expiryDate}
-      </div>
-      <div className="list-item-menu">
-        <Dropdown.Button overlay={(<Menu onClick={(e) => handleDelete(id)}>
-          <Button type="primary" danger>
-            Delete
-          </Button>
-        </Menu>)}/>
-      </div>
-    </p>
+    <div className="list-item-state">
+      { getStateEmoji(expiryDate) }
+    </div>
+    <div className="list-item-name">
+      {name}
+    </div>
+    <div className="list-item-expiryDate">
+      {expiryDate}
+    </div>
+    <div className="list-item-menu">
+      <Dropdown.Button overlay={(<Menu onClick={(e) => handleDelete(id)}>
+        <Button type="primary" danger>
+          Delete
+        </Button>
+      </Menu>)}/>
+    </div>
   </div>
 );
 
