@@ -19,7 +19,7 @@ class NewItem extends React.Component {
       .then(
         (result) => {
           message.success("New item added: " + result.name);
-          window.location.reload();
+          this.props.handleUpdate(result)
         },
         (error) => {
           message.error("Something went wrong: " + error.message + " , try again...");

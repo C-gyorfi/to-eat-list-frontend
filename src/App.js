@@ -13,7 +13,7 @@ class App extends React.Component  {
     this.handleLogin = this.handleLogin.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
     this.state = {
-       user: { email: new Cookies().get('user') }  
+       user: { email: new Cookies().get('user') }
     }
   }
 
@@ -29,7 +29,11 @@ class App extends React.Component  {
 
   handleLogout() {
     new Cookies().remove('user', { path: '/' });
-    this.setState({ user: undefined });
+    this.setState({ user: null });
+  }
+
+  handleUpdate(result) {
+    this.setState({ update: result });
   }
 
   render() {
@@ -40,7 +44,7 @@ class App extends React.Component  {
             <h1>To Eat List 🦑🥒🍚🥢</h1>
             <Logout handleLogout = {this.handleLogout} />
           </header>
-          <NewItem />
+          <NewItem handleUpdate = {this.handleUpdate.bind(this)} />
           <FoodList />
         </div>
       );
