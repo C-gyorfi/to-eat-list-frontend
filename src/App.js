@@ -32,10 +32,6 @@ class App extends React.Component  {
     this.setState({ user: null });
   }
 
-  handleUpdate(result) {
-    this.setState({ update: result });
-  }
-
   render() {
     if (this.state.user) {
       return (
@@ -44,7 +40,7 @@ class App extends React.Component  {
             <h1>To Eat List 🦑🥒🍚🥢</h1>
             <Logout handleLogout = {this.handleLogout} />
           </header>
-          <NewItem handleUpdate = {this.handleUpdate.bind(this)} />
+          <NewItem />
           <FoodList />
         </div>
       );
