@@ -11,8 +11,6 @@ function handleDelete(id) {
     .then(
       (result) => {
         message.info(result.message);
-        //Fixme: reloading the window is not ideal
-        window.location.reload();
       },
       (error) => {
         message.error("Something went wrong: " + error.message + " , try again...");
