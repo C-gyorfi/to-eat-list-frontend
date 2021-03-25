@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './NewItem.css';
 import { Input, DatePicker, Button, message } from 'antd';
 
-const NewItem = () => {
+const NewItem = (props) => {
   const [newItemName, setnewItemName] = useState('');
 
   const addItem = () => {
@@ -21,6 +21,7 @@ const NewItem = () => {
         (result) => {
           message.success("New item added: " + result.name);
           setnewItemName('');
+          props.renderFoodList();
         },
         (error) => {
           message.error("Something went wrong: " + error.message + " , try again...");

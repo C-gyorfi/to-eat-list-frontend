@@ -2,7 +2,6 @@ import './App.css';
 import React, { useState } from 'react';
 import FoodList from './FoodList/FoodList.js'
 import 'antd/dist/antd.css';
-import NewItem from './NewItem/NewItem';
 import Login from './Auth/Login';
 import Logout from './Auth/Logout';
 import Cookies from 'universal-cookie';
@@ -24,6 +23,7 @@ function App() {
     new Cookies().remove('user', { path: '/' });
     setUser({ email: null })
   }
+
   if (user.email) {
     return (
       <div className="App">
@@ -31,8 +31,7 @@ function App() {
           <h1>To Eat List 🦑🥒🍚🥢</h1>
           <Logout handleLogout = {handleLogout} />
         </header>
-        {/* <NewItem /> */}
-        {/* <FoodList /> */}
+        <FoodList />
       </div>
     )
   } else {
