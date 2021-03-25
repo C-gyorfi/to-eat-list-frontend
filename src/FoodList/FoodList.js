@@ -1,12 +1,18 @@
 import './FoodList.css';
 import React, { useEffect, useState } from "react";
 import ListItem from '../ListItem/ListItem';
+import NewItem from '../NewItem/NewItem';
 import { List } from 'antd';
 
 const FoodList = () => {
+  const [state, setState] = useState(0);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+
+  const renderFoodList = ()=> {
+    setState(state + 1)
+  }
 
   useEffect(() => {
     const apiurl = process.env.REACT_APP_TEL_API_URL;
@@ -24,12 +30,13 @@ const FoodList = () => {
           setError(error);
         }
       )
-  })
+  }, [state])
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <h1>Error: {error.message}</h1
+    >;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <h1>Loading...</h1>;
   } else {
     var listItems = {}
     if (items.food_items) {
@@ -38,24 +45,33 @@ const FoodList = () => {
           id={item.id}
           name={item.name}
           expiryDate={item.expiry_date}
+          renderFoodList={renderFoodList}
         />)
       );
       return (
-        <List className="food-list-container"
-        size="large"
-        bordered
-        dataSource={listItems}
-        renderItem={item => (
-            <List.Item>
-              <List.Item.Meta
-                title={item}
-              />
-            </List.Item>
-          )}
-        />
+        <>
+          <NewItem renderFoodList={renderFoodList} />
+          <List className="food-list-container"
+          size="large"
+          bordered
+          dataSource={listItems}
+          renderItem={item => (
+              <List.Item>
+                <List.Item.Meta
+                  title={item}
+                />
+              </List.Item>
+            )}
+          />
+        </>
       );
     }
-    return <div>No items found...</div>;
+    return(
+      <>
+        <NewItem renderFoodList={renderFoodList} />
+        <h1>No items found...🤷‍♀️</h1>
+      </>
+    )
   }
 }
 

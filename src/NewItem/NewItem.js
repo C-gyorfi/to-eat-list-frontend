@@ -1,20 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './NewItem.css';
 import { Input, DatePicker, Button, message } from 'antd';
 
-class NewItem extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      newItem: "",
-      expiryDate: ""
-   }
-  }
+const NewItem = (props) => {
+  const [newItemName, setnewItemName] = useState('');
 
-  addItem = () => {
+  const addItem = () => {
     const apiurl = process.env.REACT_APP_TEL_API_URL;
     const endpoint = "api/1/food_item/";
-    const newItemName = this.state.newItem;
     const expiryDate = document.getElementById('new-expiry-date').value;
     if (!newItemName || !expiryDate) return message.warn('Enter food item details');
     const requestOptions = {
@@ -27,10 +20,8 @@ class NewItem extends React.Component {
       .then(
         (result) => {
           message.success("New item added: " + result.name);
-          this.setState({
-            newItem: "",
-            expiryDate: ""
-          });
+          setnewItemName('');
+          props.renderFoodList();
         },
         (error) => {
           message.error("Something went wrong: " + error.message + " , try again...");
@@ -39,25 +30,21 @@ class NewItem extends React.Component {
     );
   }
 
-  onInputchange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+  const onInputchange = (event) => {
+    setnewItemName(event.target.value)
   }
 
-  render = () => {
-    return (
-      <div className={`new-item-container`}>
-        <Input.Group size="large">
-          <Input name='newItem' id='new-item-field' style={{ width: '45%' }} value={this.state.newItem} onChange={this.onInputchange} />
-          <DatePicker id='new-expiry-date' size="large" style={{ width: '35%' }} />
-          <Button onClick={this.addItem} type="primary" size="large" style={{ width: '20%' }}>
-            Add
-          </Button>
-        </Input.Group>
+  return (
+    <div className={`new-item-container`}>
+      <Input.Group size="large">
+        <Input name='newItem' id='new-item-field' style={{ width: '45%' }} value={newItemName} onChange={onInputchange} />
+        <DatePicker id='new-expiry-date' size="large" style={{ width: '35%' }} />
+        <Button onClick={addItem} type="primary" size="large" style={{ width: '20%' }}>
+          Add
+        </Button>
+      </Input.Group>
     </div>
-    );
-  }
-}
+  );
+};
 
 export default NewItem;

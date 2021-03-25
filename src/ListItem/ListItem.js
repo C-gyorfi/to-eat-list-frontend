@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './ListItem.css';
 import { Menu, Dropdown, Button, message } from 'antd';
 
-function handleDelete(id) {
+function handleDelete(id, renderFoodList) {
   const apiurl = process.env.REACT_APP_TEL_API_URL;
   const endpoint = `api/food_item/${id}/`;
   fetch(apiurl + endpoint, { method: 'DELETE' })
@@ -11,6 +11,7 @@ function handleDelete(id) {
     .then(
       (result) => {
         message.info(result.message);
+        renderFoodList();
       },
       (error) => {
         message.error("Something went wrong: " + error.message + " , try again...");
@@ -26,7 +27,7 @@ function getStateEmoji(expiryDateString){
   return expiryDate < now ? "😢" : "✅"; 
 }
 
-const ListItem = ({id, name, expiryDate }) => (
+const ListItem = ({id, name, expiryDate, renderFoodList }) => (
   <div className={`list-item ${name}`}>
     <div className="list-item-state">
       { getStateEmoji(expiryDate) }
@@ -38,7 +39,7 @@ const ListItem = ({id, name, expiryDate }) => (
       {expiryDate}
     </div>
     <div className="list-item-menu">
-      <Dropdown.Button overlay={(<Menu onClick={(e) => handleDelete(id)}>
+      <Dropdown.Button overlay={(<Menu onClick={(e) => handleDelete(id, renderFoodList)}>
         <Button type="primary" danger>
           Delete
         </Button>
